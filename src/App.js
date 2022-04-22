@@ -20,38 +20,45 @@ function App() {
     <div className="App">
 
         <Header/>
-        <Router>
-            <Sidebar/>
-            <Routes>
-                <Route exact path="/" element={Home()}/>
-                <Route path="/profile" element={Content(
-                    {
-                        title: "Profile",
-                        content: Profile(
-                            {
-                                name: "Alexey"
-                            }
-                        )
-                    }
-                )}/>
-                <Route path="/git-repos" element={Content(
-                    {
-                        title: "Your Git Repositories",
-                        content: GitRepositories(
-                            {
-                                repo: ["git1", "git2", "git3"]
-                            }
-                        )
-                    }
-                )}/>
-                <Route path="/analyze" element={Content(
-                    {
-                        title: "Analyzer",
-                        content: Analyzer()
-                    }
-                )}/>
-            </Routes>
-        </Router>
+        <div className="flex-container">
+            <Router>
+                <Sidebar/>
+                <Routes>
+                    <Route exact path="/" element={Content(
+                        {
+                            title: "Home",
+                            content: Home()
+                        }
+                    )}/>
+                    <Route path="/profile" element={Content(
+                        {
+                            title: "Profile",
+                            content: Profile(
+                                {
+                                    name: "Alexey"
+                                }
+                            )
+                        }
+                    )}/>
+                    <Route path="/git-repos" element={Content(
+                        {
+                            title: "Your Git Repositories",
+                            content: GitRepositories(
+                                {
+                                    repo: ["git1", "git2", "git3"]
+                                }
+                            )
+                        }
+                    )}/>
+                    <Route path="/analyze" element={Content(
+                        {
+                            title: "Analyzer",
+                            content: Analyzer()
+                        }
+                    )}/>
+                </Routes>
+            </Router>
+        </div>
     </div>
   );
 }
