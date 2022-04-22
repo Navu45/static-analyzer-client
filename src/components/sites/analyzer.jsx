@@ -1,4 +1,4 @@
-function Analyzer(props){
+function Analyzer(){
     return(
         <h1>Analyze your code!</h1>
     );
