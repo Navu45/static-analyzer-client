@@ -5,6 +5,7 @@ import Profile from "../components/sites/profile";
 import Analyzer from "../components/sites/analyzer";
 import React from "react";
 import GitRepositories from "../components/sites/repos";
+import Agreement from "../components/sites/agreement";
 
 function NavigationRoutes(){
     return(
@@ -39,6 +40,12 @@ function NavigationRoutes(){
                 {
                     title: "Analyzer",
                     content: Analyzer()
+                }
+            )}/>
+            <Route path="/agreement" element={Content(
+                {
+                    title: "Agreement",
+                    content: Agreement()
                 }
             )}/>
         </Routes>

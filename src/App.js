@@ -16,8 +16,8 @@ function App() {
 
         <Header/>
         <div className="flex-container">
-            <Sidebar/>
             <Router>
+                <Sidebar/>
                 <NavigationRoutes/>
             </Router>
         </div>

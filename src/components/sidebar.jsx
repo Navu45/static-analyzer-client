@@ -8,6 +8,7 @@ function Sidebar() {
                 <li><Link to="/profile">Profile</Link></li>
                 <li><Link to="/git-repos">Git repositories</Link></li>
                 <li><Link to="/analyze">Go to Analyze Page</Link></li>
+                <li><Link to="/agreement">Agreement</Link></li>
             </ul>
         </nav>
     );
