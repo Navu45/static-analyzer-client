@@ -1,6 +1,8 @@
+import {Text} from "@rneui/themed";
+
 function Profile(props){
     return(
-        <p>{props.name}</p>
+        <Text>{props.name}</Text>
     );
 }
 export default Profile;

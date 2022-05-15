@@ -1,6 +1,8 @@
+import {Text} from "@rneui/themed";
+
 function Analyzer(){
     return(
-        <h1>Analyze your code!</h1>
+        <Text>Analyze your code!</Text>
     );
 }
 export default Analyzer;

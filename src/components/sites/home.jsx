@@ -1,6 +1,12 @@
+import {View} from "react-native-web";
+import Typography from "@mui/material/Typography";
+import {Grid} from "@mui/material";
+
 function Home(){
     return(
-        <h1>Welcome to Architecture control tool</h1>
+        <Grid>
+
+        </Grid>
     );
 }
 export default Home;
