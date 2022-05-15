@@ -1,15 +1,14 @@
 import './css/content.css'
 import React, {useState} from "react";
-import SignInSide from "./components/sites/signIn";
 import CssBaseline from "@mui/material/CssBaseline";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import AppBar from "./components/common/AppBar";
 import Sidebar from "./components/common/Sidebar";
-import Routes from "./routes/routes";
 import Router from "./routes/router";
-import {useUser} from "./services/contexts/UserContext";
 import {red} from "@mui/material/colors";
+import {useAuthProvider} from "./services/contexts/AuthContext"
+import {Routes} from "./routes/routes";
 
 const theme = createTheme({
     palette: {
@@ -20,7 +19,7 @@ const theme = createTheme({
 });
 
 function App() {
-    const {user} = useUser();
+    const {user} = useAuthProvider();
 
     // Sidebar toggle
     const [open, setOpen] = useState(true);
@@ -28,10 +27,18 @@ function App() {
         setOpen(!open);
     };
 
-    if (user.name === "Anonymous")
-    return(
-        <SignInSide/>
-    )
+    if (user.name === "Anonymous") {
+        return(
+            <ThemeProvider theme={theme}>
+                <Box sx={{ display: 'flex' }}>
+                    <CssBaseline />
+                    <Router>
+                        <Routes/>
+                    </Router>
+                </Box>
+            </ThemeProvider>
+        )
+    }
     else {
         return(
             <ThemeProvider theme={theme}>
