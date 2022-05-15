@@ -11,7 +11,7 @@ import React from "react";
 import SignInSide from "../components/sites/signIn";
 import SignUp from "../components/sites/signUp";
 
-export default function Routes()
+export default function Routes(toggle)
 {
     return(
         <ReactRoutes>
@@ -30,7 +30,21 @@ export default function Routes()
             <Route path="/git-repos" element={Content(
                 {
                     title: "Your Git Repositories",
-                    content: GitRepositories(["git1", "git2", "git3"])
+                    content: GitRepositories({
+                        repos: [
+                            {
+                                name:"git1",
+                                owner: "me"
+                            },
+                            {
+                                name:"git2",
+                                owner: "me"
+                            },
+                            {
+                                name:"git3",
+                                owner: "me"
+                            }
+                        ] })
                 }
             )}/>
             <Route path="/analyze" element={Content(

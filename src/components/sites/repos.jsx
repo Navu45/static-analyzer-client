@@ -1,12 +1,16 @@
-import {ListItem} from "@mui/material";
+import {Grid} from "@mui/material";
+import {Repository} from "../dashboard/Repository";
 
 function GitRepositories(props){
-    return(props.map((repo, i) => (
-        <ListItem key={i} bottomDivider>
-            <ListItem.Content>
-                <ListItem.Title>{repo}</ListItem.Title>
-            </ListItem.Content>
-        </ListItem>
-    )));
+    const repos = props.repos;
+
+    const result = repos.map((repo, i) =>{
+        const link = "https:/github.com/" + repo.owner + "/" + repo.name;
+        return Repository(i, link, repo.owner)
+    });
+    return  <Grid container spacing={4}>
+        {result}
+    </Grid>;
 }
 export default GitRepositories;
+
