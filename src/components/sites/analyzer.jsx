@@ -23,7 +23,7 @@ function getSeverity(problemType){
 function Analyzer(){
     const {user} = useAuth()
     const {lastReview, analyserService, setLastReview} = useAnalysis()
-    const {backdrop, handleOpenBackdrop} = AnalyzeBackdrop()
+    const {backdrop, handleOpenBackdrop, handleCloseBackdrop} = AnalyzeBackdrop()
     const navigate = useNavigate()
     const problemList = lastReview.problems.map(problem =>
         <Grid component={Paper}>
@@ -36,6 +36,7 @@ function Analyzer(){
         analyserService.analyze(lastReview.repo, user.token).then(data => {
             setLastReview(data)
             navigate("/analyze")
+            handleCloseBackdrop()
         })
     }
 
@@ -43,8 +44,8 @@ function Analyzer(){
     {
         return <Title>Go to Repositories Page and Pick one to analyze!</Title>
     }
-    const link = "https:/github.com/" + lastReview.repo.owner + "/" + lastReview.repo.repo;
 
+    const link = "https:/github.com/" + lastReview.repo.owner + "/" + lastReview.repo.repo;
     return <Stack>
         <Card
             sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
@@ -71,7 +72,7 @@ function Analyzer(){
                 <Button size="large">Edit</Button>
             </CardActions>
         </Card>
-        <Typography gutterBottom variant="h3" component="h2">
+        <Typography sx={{mt: '4vh', ml: '3vh'}} variant="h4" component="h2">
             Problems
         </Typography>
         <Divider sx={{m: '3vh'}}/>

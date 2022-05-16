@@ -21,6 +21,7 @@ export default function AnalyzeBackdrop()
         >
             <CircularProgress color="inherit" />
         </Backdrop>,
-        handleOpenBackdrop: handleOpenBackdrop
+        handleOpenBackdrop,
+        handleCloseBackdrop
     }
 }

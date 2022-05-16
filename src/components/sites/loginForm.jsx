@@ -27,7 +27,7 @@ export default function LoginForm()
             if (signedUser !== null && signedUser !== undefined)
             {
                 const newUser = {
-                    name:  signedUser.firstName + signedUser.lastName,
+                    name:  signedUser.firstName + " " + signedUser.lastName,
                     token: response.headers.authorization,
                     email: signedUser.username
                 }
