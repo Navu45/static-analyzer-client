@@ -14,8 +14,6 @@ import SignInSide from "../components/sites/signIn";
 import SignUp from "../components/sites/signUp";
 import {useAuth} from "../services/contexts/AuthContext";
 import {AnalysisProvider} from "../services/contexts/AnalysisContext";
-import {Grid} from "@mui/material";
-import {View} from "react-native-web";
 
 const PrivateRoute = () => {
     let {user} = useAuth(); // determine if authorized, from context or however you're doing it
@@ -37,7 +35,6 @@ const AuthRoute = () => {
 
 export function Routes()
 {
-    const {user} = useAuth()
     return(
         <ReactRoutes>
             <Route exact path='/' element={<PrivateRoute/>}>
@@ -65,8 +62,8 @@ export function Routes()
                 <Route exact path="/analyze" element={
                     <AnalysisProvider>
                         {Content({
-                            title: "Analyzer",
-                            content: Analyzer()
+                            title: "Last Review",
+                            content: <Analyzer/>
                         })}
                     </AnalysisProvider>
                 }/>

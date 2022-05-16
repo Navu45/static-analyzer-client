@@ -2,8 +2,11 @@ import API from './http-common';
 
 export default class AnalysisService {
 
-    analyze(data) {
-        return API.get(`analyzer/analyze`, data)
+    analyze(data, token) {
+        const headers = {
+            'Authorization': 'Bearer ' + token
+        };
+        return API.post(`analyzer/analyze`, data, {headers})
             .then(res => {
                 console.log(res);
                 console.log(res.data);
