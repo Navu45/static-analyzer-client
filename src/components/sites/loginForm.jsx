@@ -10,20 +10,18 @@ import {useAuthProvider} from "../../services/contexts/AuthContext";
 
 export default function LoginForm()
 {
-    const {setUser, userService} = useAuthProvider();
+    const {userService} = useAuthProvider();
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+
         console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-        userService.login(data).then(res => {
-            console.log(data)
-            setUser({
-                name:  res.data.user.firstName + res.data.user.lastName,
-                token: res.headers.get('Authorisation')
-            })
+            username: data.get("username"),
+            password: data.get("password")
+        })
+        userService.login({
+            username: data.get("username"),
+            password: data.get("password")
         })
     };
 
@@ -67,7 +65,7 @@ export default function LoginForm()
                 {/*</Link>*/}
             </Grid>
             <Grid item>
-                <Link href={"/registration"} variant="body2">
+                <Link href={"/auth/registration"} variant="body2">
                     {"Don't have an account? Sign Up"}
                 </Link>
             </Grid>

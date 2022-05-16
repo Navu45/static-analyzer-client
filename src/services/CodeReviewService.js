@@ -1,4 +1,4 @@
-import API from 'axios';
+import API from './http-common';
 
 export default class CodeReviewService {
 

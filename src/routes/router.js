@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
-    BrowserRouter,
-    MemoryRouter,
+    BrowserRouter
 } from 'react-router-dom';
 
 export default function Router(props) {

@@ -15,11 +15,19 @@ import SignUp from "../components/sites/signUp";
 import {useAuthProvider} from "../services/contexts/AuthContext";
 
 const PrivateRoute = () => {
+    let {user, userService} = useAuthProvider(); // determine if authorized, from context or however you're doing it
+
+    // If authorized, return an outlet that will render child elements
+    // If not, return element that will navigate to login page
+    return user.name !== "Anonymous" && userService.evaluateToken() ? <Outlet /> : <Navigate to="/auth/login" />;
+}
+
+const AuthRoute = () => {
     let {user} = useAuthProvider(); // determine if authorized, from context or however you're doing it
 
     // If authorized, return an outlet that will render child elements
     // If not, return element that will navigate to login page
-    return user.name !== "Anonymous" ? <Outlet /> : <Navigate to="/login" />;
+    return user.name === "Anonymous" ? <Outlet /> : <Navigate to="/" />;
 }
 
 export function Routes()
@@ -66,8 +74,10 @@ export function Routes()
                     }
                 )}/>
             </Route>
-            <Route exact path="/login" element={SignInSide()}/>
-            <Route exact path="/registration" element={SignUp()}/>
+            <Route exact path="/auth" element={<AuthRoute/>}>
+                <Route exact path="/auth/login" element={SignInSide()}/>
+                <Route exact path="/auth/registration" element={SignUp()}/>
+            </Route>
         </ReactRoutes>
     )
 }

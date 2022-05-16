@@ -1,13 +1,10 @@
-import React, {useContext, useEffect} from 'react'
+import React from 'react'
 import UserService from "../UserService";
 
 const AuthContext = React.createContext()
 
 function AuthProvider(props) {
-    const [user, setUser] = React.useState({
-        name: "Anonymous",
-        token: ""
-    })
+    const [user, setUser] = React.useState(localStorage.getItem("user"))
     const value = React.useMemo(() => {
         return {
             user,
@@ -15,11 +12,6 @@ function AuthProvider(props) {
         }
     }, [user])
     return <AuthContext.Provider value={value} {...props} />
-}
-
-function useAuth()
-{
-    return useContext(AuthContext)
 }
 
 function useAuthProvider() {
@@ -37,4 +29,4 @@ function useAuthProvider() {
     }
 }
 
-export {AuthProvider, useAuth, useAuthProvider}
+export {AuthProvider, useAuthProvider}

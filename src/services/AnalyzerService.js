@@ -1,11 +1,9 @@
-import React from 'react';
-
-import API from 'axios';
+import API from './http-common';
 
 export default class AnalysisService {
 
     login(data) {
-        API.post(`login/`, data)
+        API.post(`/login`, data)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -14,7 +12,7 @@ export default class AnalysisService {
     }
 
     registration(data) {
-        API.post(`registration/`, data)
+        API.post(`/registration`, data)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -23,7 +21,7 @@ export default class AnalysisService {
     }
 
     activate(data) {
-        API.post(`activate/${data}`)
+        API.post(`/activate/${data}`)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
