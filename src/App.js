@@ -27,7 +27,9 @@ function App() {
         setOpen(!open);
     };
 
-    if (user !== null && user.name === "Anonymous") {
+    console.log({user})
+    console.log(user.name === "")
+    if (user.name === "") {
         return(
             <ThemeProvider theme={theme}>
                 <Box sx={{ display: 'flex' }}>

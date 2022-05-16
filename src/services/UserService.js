@@ -1,23 +1,9 @@
 import API from './http-common';
 import axios from "axios";
-import {useAuthProvider} from "./contexts/AuthContext";
 
 export default class UserService {
 
-    login = (data) => {
-        const {user, setUser} = useAuthProvider();
-        return axios.post(`http://localhost:8082/login`, data)
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-                setUser({
-                    name:  res.data.user.firstName + res.data.user.lastName,
-                    token: res.headers['Authorisation'],
-                    email: res.data.user.email
-                })
-                localStorage.setItem("user", user)
-            })
-    }
+    login = (data) => axios.post(`http://localhost:8082/login`, data)
 
     registration = (data) =>
         API.post(`registration/`, data)
@@ -36,17 +22,18 @@ export default class UserService {
                 return res
             })
 
-    evaluateToken = () =>
+    evaluateToken = (data) =>
     {
-        const {user} = useAuthProvider();
         const headers = {
-            'Authorization': 'Bearer ' + user.token,
-            'My-Custom-Header': 'foobar'
+            'Authorization': 'Bearer ' + data.token
         };
-        return API.post(`token/`, null, {headers})
+
+        return API.get(`token/`, null, {headers})
             .then(res => {
-                return res.data.email === user.email
+                console.log("token is " + res.data.email === data.email)
+                return res.data.email === data.user.email
             })
+            .catch(error => false)
     }
 
 }

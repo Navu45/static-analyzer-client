@@ -19,15 +19,15 @@ const PrivateRoute = () => {
 
     // If authorized, return an outlet that will render child elements
     // If not, return element that will navigate to login page
-    return user.name !== "Anonymous" && userService.evaluateToken() ? <Outlet /> : <Navigate to="/auth/login" />;
+    return user.token !== "" && userService.evaluateToken(user) ? <Outlet /> : <Navigate to="/auth/login" />;
 }
 
 const AuthRoute = () => {
     let {user} = useAuthProvider(); // determine if authorized, from context or however you're doing it
 
     // If authorized, return an outlet that will render child elements
-    // If not, return element that will navigate to login page
-    return user.name === "Anonymous" ? <Outlet /> : <Navigate to="/" />;
+    // If not, return element that will navigate to home page
+    return user.name === "" ? <Outlet /> : <Navigate to="/" />;
 }
 
 export function Routes()

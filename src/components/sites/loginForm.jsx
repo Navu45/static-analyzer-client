@@ -10,7 +10,7 @@ import {useAuthProvider} from "../../services/contexts/AuthContext";
 
 export default function LoginForm()
 {
-    const {userService} = useAuthProvider();
+    const {userService, setUser, user} = useAuthProvider();
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -22,7 +22,20 @@ export default function LoginForm()
         userService.login({
             username: data.get("username"),
             password: data.get("password")
-        })
+        }).then(response => {
+            console.log({response})
+            if (response.data.user !== undefined)
+            {
+                setUser({
+                    name:  response.data.user.firstName + response.data.user.lastName,
+                    token: response.headers['Authorisation'],
+                    email: response.data.user.email
+                })
+                localStorage.setItem("name", user.name)
+                localStorage.setItem("token", user.token)
+                localStorage.setItem("email", user.email)
+            }
+        });
     };
 
     return <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>

@@ -2,9 +2,15 @@ import React from 'react'
 import UserService from "../UserService";
 
 const AuthContext = React.createContext()
+const userService = new UserService();
+
 
 function AuthProvider(props) {
-    const [user, setUser] = React.useState(localStorage.getItem("user"))
+    const [user, setUser] = React.useState({
+        name : localStorage.getItem("name") === null ? "" : localStorage.getItem("name"),
+        token : localStorage.getItem("token") === null ? "" : localStorage.getItem("token"),
+        email : localStorage.getItem("email") === null ? "" : localStorage.getItem("email")
+    })
     const value = React.useMemo(() => {
         return {
             user,
@@ -20,7 +26,7 @@ function useAuthProvider() {
         throw new Error('useUserContext must be used within a UserProvider')
     }
     const {user, setUser} = context
-    const userService = new UserService();
+
 
     return {
         user,
