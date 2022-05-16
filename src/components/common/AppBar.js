@@ -30,8 +30,9 @@ const MyAppBar = styled(MuiAppBar, {
 
 export default function AppBar(open, toggleDrawer)
 {
-    const {setUser} = useAuthProvider()
+    const {setUser, saveUser} = useAuthProvider()
     function logout() {
+        saveUser(anonymous)
         setUser(anonymous)
     }
 
