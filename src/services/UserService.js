@@ -6,26 +6,14 @@ export default class UserService {
     login = (data) => {
         return axios.post(`http://localhost:8082/login`, data)
             .then(res => {
-                console.log({res});
                 return res
             });
     }
 
 
-                registration = (data) =>
-        API.post(`registration/`, data)
+    registration = (data) =>
+        axios.post(`http://localhost:8082/registration`, data)
             .then(res => {
-                console.log(res);
-                console.log(res.data);
-                return res
-            })
-
-
-    activate = (data) =>
-        API.post(`activate/${data}`)
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
                 return res
             })
 

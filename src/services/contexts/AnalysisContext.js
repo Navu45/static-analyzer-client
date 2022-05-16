@@ -1,16 +1,21 @@
 import React, {useEffect} from 'react'
 import AnalysisService from "../AnalyzerService";
+import {useAuth} from "./AuthContext";
 
 const AnalysisContext = React.createContext()
+const analyserService = new AnalysisService()
 
 function AnalysisProvider(props) {
-    const [analyser, setAnalyser] = React.useState(0)
+    const [repositories, setRepositories] = React.useState([])
+    const [firstLoad, setFirstLoad] = React.useState(true)
     const value = React.useMemo(() => {
         return {
-            analyser,
-            setAnalyser,
+            repositories,
+            setRepositories,
+            firstLoad,
+            setFirstLoad
         }
-    }, [analyser])
+    }, [firstLoad, repositories])
     return <AnalysisContext.Provider value={value} {...props} />
 }
 
@@ -19,11 +24,15 @@ function useAnalysis() {
     if (!context) {
         throw new Error('useAnalysisContext must be used within a AnalysisProvider')
     }
-    const {analyser, setAnalyser} = context
-    useEffect(() => {
-        setAnalyser(new AnalysisService())
-    }, [setAnalyser]);
-    return analyser
+    const {repositories, setRepositories, firstLoad, setFirstLoad} = context
+
+    return {
+        repositories,
+        setRepositories,
+        analyserService,
+        firstLoad,
+        setFirstLoad
+    }
 }
 
 export {AnalysisProvider, useAnalysis}

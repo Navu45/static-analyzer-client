@@ -6,26 +6,24 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import * as React from "react";
-import {useAuthProvider} from "../../services/contexts/AuthContext";
+import {useAuth} from "../../services/contexts/AuthContext";
+import {useState} from "react";
+import {Alert, Collapse} from "@mui/material";
 
 export default function LoginForm()
 {
-    const {userService, setUser, saveUser} = useAuthProvider();
+    const [message, setMessage] = useState({text: "", error: false, show: false})
+    const {userService, setUser, saveUser} = useAuth();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-
-        console.log({
-            username: data.get("username"),
-            password: data.get("password")
-        })
         userService.login({
             username: data.get("username"),
             password: data.get("password")
         }).then(response => {
             const signedUser = response.data.user;
-            console.log(response.headers)
+
             if (signedUser !== null && signedUser !== undefined)
             {
                 const newUser = {
@@ -35,11 +33,31 @@ export default function LoginForm()
                 }
                 saveUser(newUser)
                 setUser(newUser)
+                setMessage({
+                    text: response.data.message,
+                    error: false,
+                    show: true
+                })
+            }
+        }).catch(error => {
+            const raisedError = error.response.data.apierror
+
+            console.log({raisedError})
+            if (raisedError !== null)
+            {
+                setMessage({
+                    text: raisedError.message,
+                    error: true,
+                    show: true
+                })
             }
         });
     };
 
     return <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+        <Collapse in={message.show}>
+            <Alert severity={message.error ? "error" : "success"}>{message.text}</Alert>
+        </Collapse>
         <TextField
             margin="normal"
             required
@@ -48,6 +66,7 @@ export default function LoginForm()
             label="Email Address"
             name="username"
             autoComplete="email"
+            error={message.error}
             autoFocus
         />
         <TextField
@@ -58,6 +77,7 @@ export default function LoginForm()
             label="Password"
             type="password"
             id="password"
+            error={message.error}
             autoComplete="current-password"
         />
         <FormControlLabel

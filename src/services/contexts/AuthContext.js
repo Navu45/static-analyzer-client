@@ -44,7 +44,7 @@ function AuthProvider(props) {
     return <AuthContext.Provider value={value} {...props} />
 }
 
-function useAuthProvider() {
+function useAuth() {
 
     const context = React.useContext(AuthContext)
     if (!context) {
@@ -60,4 +60,4 @@ function useAuthProvider() {
     }
 }
 
-export {AuthProvider, useAuthProvider}
+export {AuthProvider, useAuth}

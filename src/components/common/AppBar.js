@@ -8,7 +8,7 @@ import * as React from "react";
 import {styled} from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import {drawerWidth} from "./Dashboard";
-import {anonymous, useAuthProvider} from "../../services/contexts/AuthContext";
+import {anonymous, useAuth} from "../../services/contexts/AuthContext";
 
 const MyAppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
@@ -30,7 +30,7 @@ const MyAppBar = styled(MuiAppBar, {
 
 export default function AppBar(open, toggleDrawer)
 {
-    const {setUser, saveUser} = useAuthProvider()
+    const {setUser, saveUser} = useAuth()
     function logout() {
         saveUser(anonymous)
         setUser(anonymous)

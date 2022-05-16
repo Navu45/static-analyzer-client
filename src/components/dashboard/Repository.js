@@ -13,6 +13,7 @@ export function Repository(key, link, owner)
                 component="img"
                 image="https://source.unsplash.com/random"
                 alt="random"
+                sx={{height: "30vh"}}
             />
             <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="h5" component="h2">
@@ -26,8 +27,8 @@ export function Repository(key, link, owner)
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Analyze</Button>
-                <Button size="small">Edit</Button>
+                <Button size="large">Analyze</Button>
+                <Button size="large">Edit</Button>
             </CardActions>
         </Card>
     </Grid>

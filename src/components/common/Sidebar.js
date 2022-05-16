@@ -60,12 +60,6 @@ const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="Git Repositories" />
         </ListItemButton>
-        <ListItemButton component={RouterLink} to="/analyze" >
-            <ListItemIcon>
-                <BarChartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Go to Analyze Page" />
-        </ListItemButton>
     </View>
 );
 
@@ -74,23 +68,11 @@ const secondaryListItems = (
         <ListSubheader component="div" inset>
             Saved reports
         </ListSubheader>
-        <ListItemButton>
+        <ListItemButton component={RouterLink} to="/analyze" >
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Current month" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Last quarter" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Year-end sale" />
+            <ListItemText primary="Last review" />
         </ListItemButton>
     </View>
 );

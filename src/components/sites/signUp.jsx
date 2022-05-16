@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useAuth} from "../../services/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -29,13 +31,28 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+    const {userService} = useAuth()
+    const navigate = useNavigate();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        const newUser = {
+            firstName: data.get("firstName"),
+            lastName: data.get("lastName"),
+            username: data.get("email"),
+            password: data.get("password"),
+            confirmPassword: data.get("confirmPassword")
+        }
+        console.log({newUser})
+        userService.registration(newUser)
+            .then(response => {
+                const status = response.data.status;
+                if (status === 201)
+                {
+                    navigate("/auth/login");
+                }
+            });
     };
 
     return (
@@ -97,6 +114,17 @@ export default function SignUp() {
                                     label="Password"
                                     type="password"
                                     id="password"
+                                    autoComplete="new-password"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    name="confirmPassword"
+                                    label="Confirm Password"
+                                    type="password"
+                                    id="confirmPassword"
                                     autoComplete="new-password"
                                 />
                             </Grid>

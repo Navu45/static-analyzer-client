@@ -7,7 +7,7 @@ import AppBar from "./components/common/AppBar";
 import Sidebar from "./components/common/Sidebar";
 import Router from "./routes/router";
 import {red} from "@mui/material/colors";
-import {useAuthProvider} from "./services/contexts/AuthContext"
+import {useAuth} from "./services/contexts/AuthContext"
 import {Routes} from "./routes/routes";
 
 const theme = createTheme({
@@ -19,7 +19,7 @@ const theme = createTheme({
 });
 
 function App() {
-    const {user} = useAuthProvider();
+    const {user} = useAuth();
 
     // Sidebar toggle
     const [open, setOpen] = useState(true);

@@ -12,10 +12,13 @@ import Analyzer from "../components/sites/analyzer";
 import React from "react";
 import SignInSide from "../components/sites/signIn";
 import SignUp from "../components/sites/signUp";
-import {useAuthProvider} from "../services/contexts/AuthContext";
+import {useAuth} from "../services/contexts/AuthContext";
+import {AnalysisProvider} from "../services/contexts/AnalysisContext";
+import {Grid} from "@mui/material";
+import {View} from "react-native-web";
 
 const PrivateRoute = () => {
-    let {user} = useAuthProvider(); // determine if authorized, from context or however you're doing it
+    let {user} = useAuth(); // determine if authorized, from context or however you're doing it
 
     // If authorized, return an outlet that will render child elements
     // If not, return element that will navigate to login page
@@ -24,7 +27,7 @@ const PrivateRoute = () => {
 }
 
 const AuthRoute = () => {
-    let {user} = useAuthProvider(); // determine if authorized, from context or however you're doing it
+    let {user} = useAuth(); // determine if authorized, from context or however you're doing it
 
     // If authorized, return an outlet that will render child elements
     // If not, return element that will navigate to home page
@@ -34,12 +37,13 @@ const AuthRoute = () => {
 
 export function Routes()
 {
+    const {user} = useAuth()
     return(
         <ReactRoutes>
             <Route exact path='/' element={<PrivateRoute/>}>
                 <Route exact path="/" element={Content(
                     {
-                        title: "Welcome to Architecture control tool",
+                        title: "",
                         content: Home()
                     }
                 )}/>
@@ -49,32 +53,23 @@ export function Routes()
                         content: <Profile/>
                     }
                 )}/>
-                <Route exact path="/git-repos" element={Content(
-                    {
-                        title: "Your Git Repositories",
-                        content: GitRepositories({
-                            repos: [
-                                {
-                                    name:"git1",
-                                    owner: "me"
-                                },
-                                {
-                                    name:"git2",
-                                    owner: "me"
-                                },
-                                {
-                                    name:"git3",
-                                    owner: "me"
-                                }
-                            ] })
-                    }
-                )}/>
-                <Route exact path="/analyze" element={Content(
-                    {
-                        title: "Analyzer",
-                        content: Analyzer()
-                    }
-                )}/>
+                <Route exact path="/git-repos" element={
+                    <AnalysisProvider>
+                    {Content(
+                            {
+                                title: "Your Git Repositories",
+                                content: <GitRepositories/>}
+                    )}
+                    </AnalysisProvider>
+                }/>
+                <Route exact path="/analyze" element={
+                    <AnalysisProvider>
+                        {Content({
+                            title: "Analyzer",
+                            content: Analyzer()
+                        })}
+                    </AnalysisProvider>
+                }/>
             </Route>
             <Route exact path="/auth" element={<AuthRoute/>}>
                 <Route exact path="/auth/login" element={SignInSide()}/>

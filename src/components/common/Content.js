@@ -25,10 +25,8 @@ function Content(props){
             <Toolbar />
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                 <Grid item xs={12}>
-                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        <Title>{props.title}</Title>
-                        {props.content}
-                    </Paper>
+                    <Title>{props.title}</Title>
+                    {props.content}
                 </Grid>
             </Container>
             <Copyright sx={{ mt: 5 }}/>
