@@ -10,7 +10,8 @@ import {useAuthProvider} from "../../services/contexts/AuthContext";
 
 export default function LoginForm()
 {
-    const {userService, setUser, user} = useAuthProvider();
+    const {userService, setUser, saveUser} = useAuthProvider();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -23,17 +24,17 @@ export default function LoginForm()
             username: data.get("username"),
             password: data.get("password")
         }).then(response => {
-            console.log({response})
-            if (response.data.user !== undefined)
+            const signedUser = response.data.user;
+            console.log(response.headers)
+            if (signedUser !== null && signedUser !== undefined)
             {
-                setUser({
-                    name:  response.data.user.firstName + response.data.user.lastName,
-                    token: response.headers['Authorisation'],
-                    email: response.data.user.email
-                })
-                localStorage.setItem("name", user.name)
-                localStorage.setItem("token", user.token)
-                localStorage.setItem("email", user.email)
+                const newUser = {
+                    name:  signedUser.firstName + signedUser.lastName,
+                    token: response.headers.authorization,
+                    email: signedUser.username
+                }
+                saveUser(newUser)
+                setUser(newUser)
             }
         });
     };

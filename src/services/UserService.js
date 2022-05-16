@@ -3,9 +3,16 @@ import axios from "axios";
 
 export default class UserService {
 
-    login = (data) => axios.post(`http://localhost:8082/login`, data)
+    login = (data) => {
+        return axios.post(`http://localhost:8082/login`, data)
+            .then(res => {
+                console.log({res});
+                return res
+            });
+    }
 
-    registration = (data) =>
+
+                registration = (data) =>
         API.post(`registration/`, data)
             .then(res => {
                 console.log(res);
@@ -22,18 +29,18 @@ export default class UserService {
                 return res
             })
 
-    evaluateToken = (data) =>
+    evaluateToken = (token, email) =>
     {
         const headers = {
-            'Authorization': 'Bearer ' + data.token
+            'Authorization': 'Bearer ' + token
         };
 
-        return API.get(`token/`, null, {headers})
+        return API.get(`token/`, {headers})
             .then(res => {
-                console.log("token is " + res.data.email === data.email)
-                return res.data.email === data.user.email
+                console.log("token is " + res.data.email.localeCompare(email))
+                return Promise.resolve(res.data.email.localeCompare(email))
             })
-            .catch(error => false)
+            .catch(() => Promise.reject())
     }
 
 }
