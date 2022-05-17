@@ -17,15 +17,13 @@ const saveUser = function (newUser) {
     localStorage.setItem("email", newUser.email)
 }
 
-const getUser = function ()
-{
+const getUser = function () {
     let user = {
-        name : localStorage.getItem("name") === null ? "" : localStorage.getItem("name"),
-        token : localStorage.getItem("token") === null ? "" : localStorage.getItem("token"),
-        email : localStorage.getItem("email") === null ? "" : localStorage.getItem("email")
+        name: localStorage.getItem("name") === null ? "" : localStorage.getItem("name"),
+        token: localStorage.getItem("token") === null ? "" : localStorage.getItem("token"),
+        email: localStorage.getItem("email") === null ? "" : localStorage.getItem("email")
     }
-    if (user.token !== null && !userService.evaluateToken(user.token, user.email))
-    {
+    if (user.token !== null && !userService.evaluateToken(user.token, user.email)) {
         localStorage.clear()
         return anonymous
     }

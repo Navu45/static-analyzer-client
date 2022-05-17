@@ -8,11 +8,11 @@ import * as React from "react";
 import {styled} from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import {drawerWidth} from "./Dashboard";
-import {anonymous, useAuth} from "../../services/contexts/AuthContext";
+import {anonymous, useAuth} from "../../../services/contexts/AuthContext";
 
 const MyAppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
+})(({theme, open}) => ({
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
@@ -28,15 +28,15 @@ const MyAppBar = styled(MuiAppBar, {
     }),
 }));
 
-export default function AppBar(open, toggleDrawer)
-{
+export default function AppBar(open, toggleDrawer) {
     const {setUser, saveUser} = useAuth()
+
     function logout() {
         saveUser(anonymous)
         setUser(anonymous)
     }
 
-    return(
+    return (
         <MyAppBar position="absolute" open={open}>
             <Toolbar
                 sx={{
@@ -50,19 +50,19 @@ export default function AppBar(open, toggleDrawer)
                     onClick={toggleDrawer}
                     sx={{
                         marginRight: '36px',
-                        ...(open && { display: 'none' }),
+                        ...(open && {display: 'none'}),
                     }}
                 >
-                    <MenuIcon />
+                    <MenuIcon/>
                 </IconButton>
                 <Typography
                     component="h1"
                     variant="h6"
                     color="inherit"
                     noWrap
-                    sx={{ flexGrow: 1 }}
+                    sx={{flexGrow: 1}}
                 >
-                    Clean Architecture Static Analyzer
+                    CA Control Tool
                 </Typography>
 
                 <IconButton color="inherit" onClick={logout}>
@@ -70,7 +70,7 @@ export default function AppBar(open, toggleDrawer)
                         pr: '24px', // keep right padding when drawer closed
                     }}>Logout</Typography>
                     <Badge color="secondary">
-                        <LogoutIcon />
+                        <LogoutIcon/>
                     </Badge>
                 </IconButton>
             </Toolbar>

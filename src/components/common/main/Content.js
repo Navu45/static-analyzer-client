@@ -3,12 +3,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import * as React from "react";
-import Title from "../dashboard/Title";
-import Paper from "@mui/material/Paper";
+import Title from "../Title";
 import Copyright from "./Copyright";
 
 
-function Content(props){
+function Content(props) {
     return (
         <Box
             component="main"
@@ -22,15 +21,16 @@ function Content(props){
                 overflow: 'auto',
             }}
         >
-            <Toolbar />
-            <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <Toolbar/>
+            <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
                 <Grid item xs={12}>
                     <Title>{props.title}</Title>
                     {props.content}
                 </Grid>
             </Container>
-            <Copyright sx={{ mt: 5 }}/>
+            <Copyright sx={{mt: 5}}/>
         </Box>
     )
 }
+
 export default Content;

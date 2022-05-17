@@ -1,12 +1,11 @@
-
 import {Grid} from "@mui/material";
-import MainFeaturedPost from "../dashboard/MainPost";
+import MainFeaturedPost from "../common/MainPost";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import Post from "../dashboard/Post";
+import Post from "../common/Post";
 
-function Home(){
-    return(
+function Home() {
+    return (
         <Grid
             item
             xs={12}
@@ -23,10 +22,11 @@ function Home(){
                 description:
                     <Grid>
                         <Typography> This is a simple static analyzer that explore your
-                    GitHub repository Java project on Clean Architecture pattern.</Typography>
-                        <Divider orientation="vertical" flexItem />
+                            GitHub repository Java project on Clean Architecture pattern.</Typography>
+                        <Divider orientation="vertical" flexItem/>
                         <Typography> First, add a few JAVADOC comments with these annotations to each .java
-                            file so that the parser can get what Clean Architecture level this class belongs to.</Typography>
+                            file so that the parser can get what Clean Architecture level this class belongs
+                            to.</Typography>
                     </Grid>,
                 linkText: "Try it out!"
             }}/>
@@ -36,7 +36,7 @@ function Home(){
                 <Post post={{
                     title: "@DomainEntity",
                     subtitle: "Enterprise Domain Rules",
-                    description: "Business logic that is common to many applications.",
+                    description: "Business logic that is main to many applications.",
                     image: "https://source.unsplash.com/random"
                 }}/>
                 <Post post={{

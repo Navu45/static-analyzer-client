@@ -4,9 +4,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import BarChartIcon from '@mui/icons-material/BarChart';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -28,13 +27,13 @@ export default function Sidebar(open, toggleDrawer) {
             }}
         >
             <IconButton onClick={toggleDrawer}>
-                <ChevronLeftIcon />
+                <ChevronLeftIcon/>
             </IconButton>
         </Toolbar>
-        <Divider />
+        <Divider/>
         <List component="nav">
             {mainListItems}
-            <Divider sx={{ my: 1 }} />
+            <Divider sx={{my: 1}}/>
             {secondaryListItems}
         </List>
     </Drawer>
@@ -42,23 +41,23 @@ export default function Sidebar(open, toggleDrawer) {
 
 const mainListItems = (
     <View>
-        <ListItemButton component={RouterLink} to="/" >
+        <ListItemButton component={RouterLink} to="/">
             <ListItemIcon>
-                <DashboardIcon />
+                <DashboardIcon/>
             </ListItemIcon>
-            <ListItemText primary="Main page" />
+            <ListItemText primary="Main page"/>
         </ListItemButton>
-        <ListItemButton component={RouterLink} to="/profile" >
+        <ListItemButton component={RouterLink} to="/profile">
             <ListItemIcon>
-                <AccountCircleIcon />
+                <AccountCircleIcon/>
             </ListItemIcon>
-            <ListItemText primary="Profile" />
+            <ListItemText primary="Profile"/>
         </ListItemButton>
-        <ListItemButton component={RouterLink} to="/git-repos" >
+        <ListItemButton component={RouterLink} to="/git-repos">
             <ListItemIcon>
-                <GitHubIcon />
+                <GitHubIcon/>
             </ListItemIcon>
-            <ListItemText primary="Git Repositories" />
+            <ListItemText primary="Git Repositories"/>
         </ListItemButton>
     </View>
 );
@@ -68,11 +67,11 @@ const secondaryListItems = (
         <ListSubheader component="div" inset>
             Saved reports
         </ListSubheader>
-        <ListItemButton component={RouterLink} to="/analyze" >
+        <ListItemButton component={RouterLink} to="/analyze">
             <ListItemIcon>
-                <AssignmentIcon />
+                <AssignmentIcon/>
             </ListItemIcon>
-            <ListItemText primary="Last review" />
+            <ListItemText primary="Last review"/>
         </ListItemButton>
     </View>
 );

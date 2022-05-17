@@ -3,8 +3,8 @@ import React, {useState} from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import AppBar from "./components/common/AppBar";
-import Sidebar from "./components/common/Sidebar";
+import AppBar from "./components/common/main/AppBar";
+import Sidebar from "./components/common/main/Sidebar";
 import Router from "./routes/router";
 import {red} from "@mui/material/colors";
 import {useAuth} from "./services/contexts/AuthContext"
@@ -22,7 +22,7 @@ function App() {
     const {user} = useAuth();
 
     // Sidebar toggle
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -30,23 +30,22 @@ function App() {
     console.log({user})
     console.log(user.name === "")
     if (user.name === "") {
-        return(
+        return (
             <ThemeProvider theme={theme}>
-                <Box sx={{ display: 'flex' }}>
-                    <CssBaseline />
+                <Box sx={{display: 'flex'}}>
+                    <CssBaseline/>
                     <Router>
                         <Routes/>
                     </Router>
                 </Box>
             </ThemeProvider>
         )
-    }
-    else {
-        return(
+    } else {
+        return (
             <ThemeProvider theme={theme}>
-                <Box sx={{ display: 'flex' }}>
-                    <CssBaseline />
-                    {AppBar (open, toggleDrawer)}
+                <Box sx={{display: 'flex'}}>
+                    <CssBaseline/>
+                    {AppBar(open, toggleDrawer)}
                     <Router>
                         {Sidebar(open, toggleDrawer)}
                         <Routes/>
@@ -56,4 +55,5 @@ function App() {
         )
     }
 }
+
 export default App;

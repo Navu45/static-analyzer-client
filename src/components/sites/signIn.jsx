@@ -6,9 +6,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import LoginForm from "./loginForm";
-import Copyright from "../common/Copyright";
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import LoginForm from "../common/LoginForm";
+import Copyright from "../common/main/Copyright";
 
 const theme = createTheme();
 
@@ -16,8 +16,8 @@ export default function SignInSide() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
-                <CssBaseline />
+            <Grid container component="main" sx={{height: '100vh'}}>
+                <CssBaseline/>
                 <Grid
                     item
                     xs={false}
@@ -42,14 +42,14 @@ export default function SignInSide() {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                            <LockOutlinedIcon />
+                        <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
+                            <LockOutlinedIcon/>
                         </Avatar>
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
                         <LoginForm/>
-                        <Copyright sx={{ mt: 5 }} />
+                        <Copyright sx={{mt: 5}}/>
                     </Box>
                 </Grid>
             </Grid>

@@ -31,10 +31,10 @@ export default function FormDialog(props) {
 
     return (
 
-        <Dialog open={props.open} onClose={props.handleClose} >
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <DialogTitle>Subscribe</DialogTitle>
-            <DialogContent>
+        <Dialog open={props.open} onClose={props.handleClose}>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 1}}>
+                <DialogTitle>Add new repo</DialogTitle>
+                <DialogContent>
 
                     <DialogContentText>
                         Enter needed information to add repo to analyzer its code.
@@ -69,11 +69,11 @@ export default function FormDialog(props) {
                         fullWidth
                         variant="standard"
                     />
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={props.handleClose}>Cancel</Button>
-                <Button type="submit">Add</Button>
-            </DialogActions>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={props.handleClose}>Cancel</Button>
+                    <Button type="submit">Add</Button>
+                </DialogActions>
             </Box>
         </Dialog>
     );

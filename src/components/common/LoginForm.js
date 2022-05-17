@@ -6,12 +6,11 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import * as React from "react";
-import {useAuth} from "../../services/contexts/AuthContext";
 import {useState} from "react";
+import {useAuth} from "../../services/contexts/AuthContext";
 import {Alert, Collapse} from "@mui/material";
 
-export default function LoginForm()
-{
+export default function LoginForm() {
     const [message, setMessage] = useState({text: "", error: false, show: false})
     const {userService, setUser, saveUser} = useAuth();
 
@@ -24,10 +23,9 @@ export default function LoginForm()
         }).then(response => {
             const signedUser = response.data.user;
 
-            if (signedUser !== null && signedUser !== undefined)
-            {
+            if (signedUser !== null && signedUser !== undefined) {
                 const newUser = {
-                    name:  signedUser.firstName + " " + signedUser.lastName,
+                    name: signedUser.firstName + " " + signedUser.lastName,
                     token: response.headers.authorization,
                     email: signedUser.username
                 }
@@ -43,8 +41,7 @@ export default function LoginForm()
             const raisedError = error.response.data.apierror
 
             console.log({raisedError})
-            if (raisedError !== null)
-            {
+            if (raisedError !== null) {
                 setMessage({
                     text: raisedError.message,
                     error: true,
@@ -54,7 +51,7 @@ export default function LoginForm()
         });
     };
 
-    return <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+    return <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 1}}>
         <Collapse in={message.show}>
             <Alert severity={message.error ? "error" : "success"}>{message.text}</Alert>
         </Collapse>
@@ -81,14 +78,14 @@ export default function LoginForm()
             autoComplete="current-password"
         />
         <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={<Checkbox value="remember" color="primary"/>}
             label="Remember me"
         />
         <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{mt: 3, mb: 2}}
         >
             Sign In
         </Button>

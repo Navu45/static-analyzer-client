@@ -17,8 +17,7 @@ export default class UserService {
                 return res
             })
 
-    evaluateToken = (token, email) =>
-    {
+    evaluateToken = (token, email) => {
         const headers = {
             'Authorization': 'Bearer ' + token
         };

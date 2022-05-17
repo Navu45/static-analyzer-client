@@ -3,8 +3,7 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Button from "@mui/material/Button";
 
-export function Repository(props)
-{
+export function Repository(props) {
     const repository = props.repo
     const link = "https:/github.com/" + props.repo.owner + "/" + props.repo.repo;
 
@@ -13,7 +12,7 @@ export function Repository(props)
     }
     return <Grid item key={props.key} xs={12} sm={6} md={4}>
         <Card
-            sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+            sx={{height: '100%', display: 'flex', flexDirection: 'column'}}
         >
             <CardMedia
                 component="img"
@@ -21,7 +20,7 @@ export function Repository(props)
                 alt="random"
                 sx={{height: "30vh"}}
             />
-            <CardContent sx={{ flexGrow: 1 }}>
+            <CardContent sx={{flexGrow: 1}}>
                 <Typography gutterBottom variant="h5" component="h2">
                     Repository {props.key}
                 </Typography>

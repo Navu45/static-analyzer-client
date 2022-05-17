@@ -1,10 +1,5 @@
-import {
-    Navigate,
-    Outlet,
-    Route,
-    Routes as ReactRoutes
-} from 'react-router-dom';
-import Content from "../components/common/Content";
+import {Navigate, Outlet, Route, Routes as ReactRoutes} from 'react-router-dom';
+import Content from "../components/common/main/Content";
 import Home from "../components/sites/home";
 import Profile from "../components/sites/profile";
 import GitRepositories from "../components/sites/repos";
@@ -21,7 +16,7 @@ const PrivateRoute = () => {
     // If authorized, return an outlet that will render child elements
     // If not, return element that will navigate to login page
     return user.token !== ""
-        ? <Outlet /> : <Navigate to="/auth/login" />;
+        ? <Outlet/> : <Navigate to="/auth/login"/>;
 }
 
 const AuthRoute = () => {
@@ -30,12 +25,11 @@ const AuthRoute = () => {
     // If authorized, return an outlet that will render child elements
     // If not, return element that will navigate to home page
     return user.name === ""
-        ? <Outlet /> : <Navigate to="/" />;
+        ? <Outlet/> : <Navigate to="/"/>;
 }
 
-export function Routes()
-{
-    return(
+export function Routes() {
+    return (
         <ReactRoutes>
             <Route exact path='/' element={<PrivateRoute/>}>
                 <Route exact path="/" element={Content(
@@ -52,11 +46,12 @@ export function Routes()
                 )}/>
                 <Route exact path="/git-repos" element={
                     <AnalysisProvider>
-                    {Content(
+                        {Content(
                             {
                                 title: "Your Git Repositories",
-                                content: <GitRepositories/>}
-                    )}
+                                content: <GitRepositories/>
+                            }
+                        )}
                     </AnalysisProvider>
                 }/>
                 <Route exact path="/analyze" element={

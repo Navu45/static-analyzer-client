@@ -11,8 +11,7 @@ const noReview = {
     _links: null
 }
 
-const saveReview = function (review)
-{
+const saveReview = function (review) {
     localStorage.setItem("lastReview", review)
 }
 

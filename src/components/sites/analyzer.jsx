@@ -1,14 +1,11 @@
-import {Text} from "@rneui/themed";
 import {useAnalysis} from "../../services/contexts/AnalysisContext";
-import Title from "../dashboard/Title";
+import Title from "../common/Title";
 import {Alert, Card, CardActions, CardContent, CardMedia, Grid, Paper, Stack} from "@mui/material";
-import {useEffect} from "react";
-import {Repository} from "../dashboard/Repository";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-import AnalyzeBackdrop from "../dashboard/AnalyzeBackdrop";
+import AnalyzeBackdrop from "../common/AnalyzeBackdrop";
 import {useAuth} from "../../services/contexts/AuthContext";
 import {useNavigate} from "react-router-dom";
 
@@ -16,11 +13,11 @@ const errorTypes = [
     "ERROR", "WARNING", "SUCCESS"
 ]
 
-function getSeverity(problemType){
+function getSeverity(problemType) {
     return problemType.toLowerCase()
 }
 
-function Analyzer(){
+function Analyzer() {
     const {user} = useAuth()
     const {lastReview, analyserService, setLastReview} = useAnalysis()
     const {backdrop, handleOpenBackdrop, handleCloseBackdrop} = AnalyzeBackdrop()
@@ -40,15 +37,14 @@ function Analyzer(){
         })
     }
 
-    if (lastReview.repo === null)
-    {
+    if (lastReview.repo === null) {
         return <Title>Go to Repositories Page and Pick one to analyze!</Title>
     }
 
     const link = "https:/github.com/" + lastReview.repo.owner + "/" + lastReview.repo.repo;
     return <Stack>
         <Card
-            sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+            sx={{height: '100%', display: 'flex', flexDirection: 'column'}}
         >
             <CardMedia
                 component="img"
@@ -56,7 +52,7 @@ function Analyzer(){
                 alt="random"
                 sx={{height: "30vh"}}
             />
-            <CardContent sx={{ flexGrow: 1 }}>
+            <CardContent sx={{flexGrow: 1}}>
                 <Typography gutterBottom variant="h5" component="h2">
                     Current Repository
                 </Typography>
@@ -76,7 +72,7 @@ function Analyzer(){
             Problems
         </Typography>
         <Divider sx={{m: '3vh'}}/>
-        <Stack sx={{ width: '100%' }} spacing={2}>
+        <Stack sx={{width: '100%'}} spacing={2}>
             {problemList}
         </Stack>
         {backdrop}
@@ -84,4 +80,5 @@ function Analyzer(){
 
 
 }
+
 export default Analyzer;
